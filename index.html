@@ -182,7 +182,7 @@ html, body {
 
 /* ===== PLAYER ===== */
 .shaka-video-container{
-    position:relative;
+  position:relative;
   width:100%;
   max-width:900px;
   margin:auto;
@@ -192,9 +192,21 @@ html, body {
   border-radius:4px;
   overflow:hidden;
 }
-    
+
+/* Fullscreen fix */
+.shaka-video-container:fullscreen{
+  width:100%;
+  height:100%;
+  max-width:none;
+  aspect-ratio:auto;
 }
+
+.shaka-video-container:fullscreen video{
+  width:100%;
+  height:100%;
+  object-fit:contain;
 }
+
 video {
   width: 100%;
   height: 100%;
