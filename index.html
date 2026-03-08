@@ -6,122 +6,25 @@
 <title>SD TV LIVE</title>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/shaka-player/4.7.11/controls.min.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/shaka-player/4.7.11/shaka-player.ui.min.js"></script>
+
 <style>
-/* Body Background - Stadium Dark */
+/* Body Background */
 body {
     background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
     color: #ffffff;
+    margin:0;
+    padding:0;
+    font-family: system-ui;
 }
 
-/* Header IPL Style */
+/* Header */
 header {
-    background: #111;
+    background: #000;
+    padding: 10px 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     border-bottom: 3px solid #ff9800;
-}
-
-/* Logo Text */
-header h1 {
-    color: #00e5ff;
-    text-shadow: 0 0 10px #00e5ff;
-}
-
-/* Category Buttons */
-.category-btn {
-    background: linear-gradient(45deg, #ff512f, #dd2476);
-    border: none;
-    color: #fff;
-    font-weight: bold;
-    border-radius: 25px;
-    transition: 0.3s;
-}
-
-.category-btn:hover {
-    background: linear-gradient(45deg, #00c6ff, #0072ff);
-    transform: scale(1.05);
-}
-
-/* Channel Cards */
-.channel-card {
-    background: #;
-    border: 2px solid #;
-    border-radius: 12px;
-    transition: 0.3s;
-}
-
-.channel-card:hover {
-    border-color: #;
-    box-shadow: 0 0 15px #;
-}
-
-/* Play Button IPL Glow */
-.shaka-play-button {
-    background: rgba(0,0,0,0.6) !important;
-    box-shadow: 0 0 25px #00e5ff !important;
-}
-/* ===== BUTTONS - EK HI LINE MEIN LIKHNE KE LIYE FIX ===== */
-.filter-buttons {
-  display: flex;
-  gap: 8px;
-  margin: 10px 0;
-  flex-wrap: nowrap; /* Isse buttons niche nahi aayenge */
-  overflow-x: auto;  /* Isse side scroll ho sakega */
-  padding-bottom: 5px;
-  -webkit-overflow-scrolling: touch; /* Mobile smooth scroll */
-}
-
-/* Scrollbar ko chupane ke liye (optional) */
-.filter-buttons::-webkit-scrollbar {
-  display: none;
-}
-
-.filter-btn, .fav-btn, .my-btn, .stream-btn {
-  display: inline-block;
-  padding: 6px 14px;
-  border-radius: 20px;
-  border: 2px solid #e60000;
-  background: transparent;
-  color: #000;
-  text-decoration: none;
-  font-size: 14px;
-  text-align: center;
-  transition: all 0.2s;
-  white-space: nowrap; /* Text ko wrap hone se rokega */
-  flex-shrink: 0;      /* Buttons ko pichakne se rokega */
-}
-
-.filter-btn:hover, .fav-btn:hover, .my-btn:hover, .stream-btn:hover {
-  background: rgba(230,0,0,0.2);
-}
-.filter-btn.active, .fav-btn.active, .my-btn.active, .stream-btn.active {
-  background: #e60000;
-  color: #fff;
-}
-
-/* ===== ONLY SPORTS/FAV BUTTON COLOR FIX ===== */
-.fav-btn {
-  background: #e60000;
-  color: #fff;
-}
-
-/* ===== ONLY filter BUTTON COLOR FIX ===== */
-.filter-btn {
-  background: #e60000;
-  color: #fff;
-}
-
-/* ===== ONLY MY BUTTON COLOR FIX ===== */
-.my-btn {
-  background: #e60000;
-  color: #fff;
-}
-
-/* Purane header aur search-bar CSS ki jagah ye dalein */
-header {
-  background: #000;
-  padding: 10px 15px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
 }
 
 .logo-text {
@@ -156,22 +59,14 @@ header {
 .menu-circle { background: #333; }
 
 #search-bar {
-  display: none; /* Default me band rahega */
+  display: none; 
   width: 90%;
   margin: 10px auto;
   padding: 8px;
   border-radius: 5px;
 }
 
-
-/* ===== PAGE & CONTAINER ===== */
-html, body {
-  margin:0;
-  padding:0;
-  height:100%;
-  font-family:system-ui;
-  background:#100;
-}
+/* ===== Container ===== */
 #container{
   display: flex;
   flex-direction: column;
@@ -180,39 +75,70 @@ html, body {
   box-sizing: border-box;
 }
 
+/* ===== Video Frame ===== */
+.shaka-video-container {
+  position: relative;
+  width: 100%;
+  height: 400px; /* Chhota video frame */
+  background: #000;
+  overflow: hidden;
+  border-radius: 6px;
+}
 
-
-video {
+.shaka-video-container video {
   width: 100%;
   height: 100%;
   object-fit: contain;
   background: #000;
 }
-#player-logo{
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  width: 80px;
-  opacity: 0.8;
-  pointer-events: none;
-  z-index:10;
+
+
 }
 
-/* ===== Show Stream Info button ===== */
-#showStreamBtn {
-  position: absolute;
-  top: 10px;
-  left: 10px;
-  z-index: 20;
-  padding: 4px 8px;
-  background: ;
+.shaka-video-container:fullscreen,
+.shaka-video-container:-webkit-full-screen {
+    width: auto !important;
+    height: auto !important;
+    display: block;
+    background: #000;
+}
+}
+.shaka-video-container:-webkit-full-screen {
+    width: auto;
+    height: auto;
+    display: block;
+    background: #000;
+}
+
+/* ===== Buttons Panel ===== */
+.filter-buttons {
+  display: flex;
+  gap: 8px;
+  margin: 10px 0;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  padding-bottom: 5px;
+  -webkit-overflow-scrolling: touch;
+}
+.filter-buttons::-webkit-scrollbar { display: none; }
+
+.filter-btn, .fav-btn, .my-btn, .stream-btn {
+  display: inline-block;
+  padding: 6px 14px;
+  border-radius: 20px;
+  border: 2px solid #e60000;
+  background: #e60000;
   color: #fff;
-  border-radius: 6px;
-  text-decoration: none;
-  font-size: 12px;
+  font-size: 14px;
+  text-align: center;
+  transition: all 0.2s;
+  white-space: nowrap;
+  flex-shrink: 0;
 }
+.filter-btn:hover, .fav-btn:hover, .my-btn:hover, .stream-btn:hover { background: rgba(230,0,0,0.2); }
+.filter-btn.active, .fav-btn.active, .my-btn.active, .stream-btn.active { background: #e60000; color: #fff; }
 
-/* ===== GRID ===== */
+/* ===== Grid ===== */
 #grid{
   flex:1;
   overflow-y:auto;
@@ -238,152 +164,46 @@ video {
   font-size:12px;
   margin-top:4px;
 }
-#output{
-  display:none;
-  width:0;
-  height:0;
-  overflow:hidden;
-  user-select:none;
-}
-
-@media(max-width:500px){
-  header h1 { width: 100px; font-size:16px; }
-  #search-bar { max-width: 120px; font-size:12px; }
-  .telegram-btn { width: 90px; font-size:12px; }
-}
-
-/* Purane extra elements hide karne ke liye */
-
-}
-
-/* 1. Buttons panel ko horizontal rakhne aur wrap enable karne ke liye */
-.shaka-controls-button-panel {
-    display: flex !important;
-    flex-direction: row !important; /* Buttons horizontal rahenge */
-    flex-wrap: wrap !important;    /* Isse Seek bar ko upar jagah milegi */
-    justify-content: center !important;
-    align-items: center !important;
-}
-
-/* 2. Sirf Seek bar line ko upar bhejne ke liye */
-.shaka-seek-bar-container {
-    order: -1 !important;          /* Ye line ko buttons se pehle (upar) le jayega */
-    width: 100% !important;        /* Poori width lene se buttons niche shift ho jayenge */
-    height: 4px !important;
-    margin-bottom: 12px !important; /* Buttons aur line ke beech gap */
-    background: transparent !important;
-}
-
-
-/* Volume bar ko chota aur sahi line mein rakhne ke liye */
-.shaka-volume-bar-container {
-    width: 60px !important;
-    background: transparent !important;
-}
-
-
-/* Sab kuch YELLOW karne ke liye */
-.shaka-range-element::-webkit-slider-runnable-track {
-    background: #00f7ff !important;
-    height: 3px !important;
-}
-
-.shaka-range-element::-webkit-slider-thumb {
-    appearance: none !important;
-    height: 10px !important;
-    width: 10px !important;
-    background: # !important;
-    border-radius: 50% !important;
-    margin-top: -3.5px !important;
-}
-
-.shaka-controls-container *, .shaka-spinner-path {
-    color: # !important;
-    stroke: # !important;
-    fill: transparent !important;
-}
-
-/* Volume bar ka extra background hatane ke liye */
-.shaka-volume-bar-container {
-    background: transparent !important;
-    height: 4px !important;
-}
-
-/* Beech wala spinner gayab karne ke liye */
-.shaka-spinner-container {
-    display: none !important;
-}
-
-/* Jab video load ho raha ho, tab play/pause button chamkega (Loading indicator) */
+/* Spinner aur blinking load remove karne ke liye */
+.shaka-spinner-container,
 .shaka-play-pause-button[aria-label="buffering"] {
-    color: #ff0000 !important; /* Load hote waqt red dikhega */
-    animation: blinker 1s linear infinite;
+    display: none !important;
+    animation: none !important;
+    border: none !important;
 }
-
-@keyframes blinker {
-    50% { opacity: 0; }
-}
-
-
-</style>
-
+#output{ display:none; }
 </style>
 </head>
+
 <body>
 <header>
-  <div class="logo-text">
-    <span class="logo-prt">SD TV</span><span class="logo-stream">LIVE</span>
-  </div>
-
+  <div class="logo-text"><span class="logo-prt">SD TV</span><span class="logo-stream">LIVE</span></div>
   <div class="header-right">
-    <div class="nav-icon search-circle" onclick="toggleSearch()">
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
-    </div>
-    
-    <a href="" class="nav-icon profile-square" target="_blank">
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 1 1-7.6-10.6 8.38 8.38 0 0 1 3.9.9L21 3z"></path></svg>
-    </a>
-
-    <div class="nav-icon menu-circle">
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
-    </div>
+    <div class="nav-icon search-circle" onclick="toggleSearch()">🔍</div>
+    <a href="" class="nav-icon profile-square" target="_blank">👤</a>
+    <div class="nav-icon menu-circle">☰</div>
   </div>
 </header>
 
 <input type="text" id="search-bar" placeholder="Search channels...">
 
-
 <div id="container">
   <div class="shaka-video-container" data-shaka-player>
-    <video
-  autoplay
-  playsinline
-  preload="metadata"
-  poster="">
-</video>
-
+    <video autoplay playsinline preload="metadata" poster=""></video>
   </div>
 
   <div id="iframeContainer" style="display:none; width:100%; height:200px; margin-bottom:10px;">
-    <iframe id="contentFrame"
-      src=""
-      style="width:100%; height:100%; border:none;"
-      allowfullscreen>
-    </iframe>
+    <iframe id="contentFrame" src="" style="width:100%; height:100%; border:none;" allowfullscreen></iframe>
   </div>
 
   <div class="filter-buttons">
-      <a href="#" class="my-btn" id="indNzBtn">Wpl Hindi</a>
+    <a href="#" class="my-btn" id="indNzBtn">Wpl Hindi</a>
     <a href="#" class="filter-btn">WPL NS</a>
-
     <a href="#" class="fav-btn active" id="allBtn">All</a>
     <a href="https://raw.githubusercontent.com/Prtstream820894/prtstreams/refs/heads/main/mx.m3u" class="fav-btn" id="moviesBtn">Movies</a>
     <a href="#" class="fav-btn" id="musicBtn">Music</a>
     <a href="#" class="fav-btn" id="sportsBtn">Sports</a>
-  
-
   </div>
-
 
   <div id="grid"></div>
 </div>
@@ -391,18 +211,14 @@ video {
 <div id="output">Click any channel to see MPD / Cookie / Key</div>
 
 <script>
-
+// ===== Toggle Search =====
 function toggleSearch() {
   const sb = document.getElementById('search-bar');
-  if (sb.style.display === 'block') {
-    sb.style.display = 'none';
-  } else {
-    sb.style.display = 'block';
-    sb.focus();
-  }
+  sb.style.display = sb.style.display === 'block' ? 'none' : 'block';
+  if(sb.style.display==='block') sb.focus();
 }
 
-
+// ===== Shaka Player =====
 const M3U_URL = "https://raw.githubusercontent.com/Prtstream820894/prtstreams/refs/heads/main/app.m3u";
 const grid = document.getElementById("grid");
 const searchBar = document.getElementById("search-bar");
@@ -420,47 +236,21 @@ document.addEventListener('DOMContentLoaded', async () => {
   const container = document.querySelector('.shaka-video-container');
   const ui = new shaka.ui.Overlay(player, container, video);
 
-ui.configure({
-    // ... baki colors wahi rahenge ...
-    controlPanelElements: [
-      'play_pause',          /* Pehle Play button */
-      'time_and_duration',   /* Phir Time */
-      'spacer',              /* Spacer beech mein gap ke liye */
-      'mute',                /* Mute button */
-      'volume',              /* Volume bar */
-      'quality',
-      'picture_in_picture',              /* Settings */
-      'fullscreen'           /* Fullscreen */
-    ]
-});
-// Loading dikhane ke liye logic
-player.addEventListener('buffering', (event) => {
+  ui.configure({ controlPanelElements:['play_pause','time_and_duration','spacer','mute','volume','quality','picture_in_picture','fullscreen'] });
+
+  player.addEventListener('buffering', (event) => {
     const playButton = document.querySelector('.shaka-play-pause-button');
-    if (event.buffering) {
-        playButton.style.opacity = "0.5"; // Play button dhundla ho jayega jab load hoga
-        playButton.style.border = "2px solid #00f7ff"; // Loading indicator jaisa border
-    } else {
-        playButton.style.opacity = "1";
-        playButton.style.border = "none";
-    }
-});
-
-
-
-
-
+    playButton.style.opacity = event.buffering ? "0.5" : "1";
+    playButton.style.border = event.buffering ? "2px solid #00f7ff" : "none";
+  });
 
   player.getNetworkingEngine().registerRequestFilter((type, request) => {
     request.headers['Referer'] = 'https://www.jiotv.com/';
     request.headers['Origin'] = 'https://www.jiotv.com';
     request.headers['User-Agent'] = "plaYtv/7.1.5 (Linux;Android 13) ExoPlayerLib/2.11.6";
     if(cookieHeader) request.headers['Cookie'] = cookieHeader;
-
-    if (
-      (type === shaka.net.NetworkingEngine.RequestType.MANIFEST ||
-       type === shaka.net.NetworkingEngine.RequestType.SEGMENT) &&
-      cookieHeader && !request.uris[0].includes('__hdnea__=')
-    ){
+    if((type===shaka.net.NetworkingEngine.RequestType.MANIFEST ||
+       type===shaka.net.NetworkingEngine.RequestType.SEGMENT) && cookieHeader && !request.uris[0].includes('__hdnea__=')) {
       const sep = request.uris[0].includes('?') ? '&' : '?';
       request.uris[0] += sep + cookieHeader;
     }
@@ -469,8 +259,7 @@ player.addEventListener('buffering', (event) => {
   const res = await fetch(M3U_URL);
   const text = await res.text();
   const lines = text.split("\n");
-  let current = {};
-  let autoPlayChannel = null;
+  let current = {}, autoPlayChannel = null;
 
   for(let i=0;i<lines.length;i++){
     const line = lines[i].trim();
@@ -504,24 +293,16 @@ player.addEventListener('buffering', (event) => {
       }
       allChannels.push({...current});
       createItem(current);
-
       if(!autoPlayChannel && current.name.toLowerCase().includes("Star Sports HD1")){
         autoPlayChannel = {...current};
       }
-
       current={};
     }
   }
 
-  if(autoPlayChannel){
-    loadChannel(autoPlayChannel);
-  }
+  if(autoPlayChannel) loadChannel(autoPlayChannel);
 
-  const buttonChannels = {
-    "WPL NS": "willow",
-    "BBL": "Star Sports HD2",
-  };
-
+  const buttonChannels = { "WPL NS":"willow","BBL":"Star Sports HD2" };
   const filterButtons = document.querySelectorAll('.filter-btn');
   filterButtons.forEach(btn => {
     btn.addEventListener('click', async (e)=>{
@@ -535,158 +316,65 @@ player.addEventListener('buffering', (event) => {
   });
 });
 
+// ===== Create Grid Item =====
 function createItem(ch){
   const div = document.createElement("div");
   div.className="item";
   div.innerHTML = `<img src="${ch.logo}"><div>${ch.name}</div>`;
-  div.onclick = async ()=>{
-    loadChannel(ch);
-  };
+  div.onclick = async ()=>{ loadChannel(ch); };
   grid.appendChild(div);
 }
 
+// ===== Load Channel =====
 async function loadChannel(ch){
   showPlayer();
+  video.poster="";
+  if(posterTimer) clearTimeout(posterTimer);
+  posterTimer = setTimeout(()=>{ if(video.paused || video.readyState<3) video.poster="H-Lfih2hxizGpp8_pdAwA/s16000/1000149859.gif"; },5000);
 
-  // default poster reset
-  video.poster = "";
-
-  // purana timer clear
-  if (posterTimer) clearTimeout(posterTimer);
-
-  // 7 second baad sirf tab poster change jab video play na ho
-  posterTimer = setTimeout(()=>{
-    if (video.paused || video.readyState < 3) {
-      video.poster = POSTER_URL;
-    }
-  },5000);
-
-  streamUrl = ch.mpd;
-  cookieHeader = ch.cookie;
-  drmConfig = { clearKeys:{} };
-  if(ch.key && ch.key !== "-"){
-    const [kid,key] = ch.key.split(":");
-    drmConfig.clearKeys[kid] = key;
+  streamUrl=ch.mpd;
+  cookieHeader=ch.cookie;
+  drmConfig={clearKeys:{}};
+  if(ch.key && ch.key!="-"){
+    const [kid,key]=ch.key.split(":");
+    drmConfig.clearKeys[kid]=key;
   }
-  try{
-    await player.configure({drm:drmConfig});
-    await player.load(streamUrl);
-  }catch(e){ console.error(e); }
+  try{ await player.configure({drm:drmConfig}); await player.load(streamUrl); }
+  catch(e){ console.error(e); }
 }
 
+// ===== Search =====
 searchBar.addEventListener("input", ()=>{
   const searchTerm = searchBar.value.toLowerCase();
-  grid.innerHTML = "";
-  allChannels
-    .filter(ch => ch.name.toLowerCase().includes(searchTerm))
-    .forEach(ch => createItem(ch));
+  grid.innerHTML="";
+  allChannels.filter(ch => ch.name.toLowerCase().includes(searchTerm)).forEach(ch => createItem(ch));
 });
 
-// SPORTS FILTER
-const sportsBtn = document.getElementById('sportsBtn');
-sportsBtn.addEventListener('click', (e) => {
-  e.preventDefault();
-  grid.innerHTML = "";
-  allChannels
-    .filter(ch => ch.name.toLowerCase().includes("sport"))
-    .forEach(ch => createItem(ch));
-  document.querySelectorAll('.filter-btn, .fav-btn, .my-btn').forEach(b => b.classList.remove('active'));
-  sportsBtn.classList.add('active');
+// ===== Filters =====
+document.getElementById('sportsBtn').addEventListener('click', e=>{
+  e.preventDefault(); grid.innerHTML=""; allChannels.filter(ch => ch.name.toLowerCase().includes("sport")).forEach(c=>createItem(c));
+  document.querySelectorAll('.filter-btn, .fav-btn, .my-btn').forEach(b=>b.classList.remove('active')); document.getElementById('sportsBtn').classList.add('active');
+});
+document.getElementById('allBtn').addEventListener('click', e=>{
+  e.preventDefault(); grid.innerHTML=""; allChannels.forEach(c=>createItem(c));
+  document.querySelectorAll('.filter-btn, .fav-btn, .my-btn').forEach(b=>b.classList.remove('active')); document.getElementById('allBtn').classList.add('active');
+});
+document.getElementById('moviesBtn').addEventListener('click', e=>{
+  e.preventDefault(); grid.innerHTML=""; allChannels.filter(ch => ch.name.toLowerCase().includes("movie") || ch.name.toLowerCase().includes("cinema") || ch.name.toLowerCase().includes("action")).forEach(c=>createItem(c));
+  document.querySelectorAll('.filter-btn, .fav-btn, .my-btn').forEach(b=>b.classList.remove('active')); document.getElementById('moviesBtn').classList.add('active');
+});
+document.getElementById('musicBtn').addEventListener('click', e=>{
+  e.preventDefault(); grid.innerHTML=""; allChannels.filter(ch => ch.name.toLowerCase().includes("music") || ch.name.toLowerCase().includes("songs") || ch.name.toLowerCase().includes("zing") || ch.name.toLowerCase().includes("mtv")).forEach(c=>createItem(c));
+  document.querySelectorAll('.filter-btn, .fav-btn, .my-btn').forEach(b=>b.classList.remove('active')); document.getElementById('musicBtn').classList.add('active');
 });
 
-// ALL FILTER
-document.getElementById('allBtn').addEventListener('click', (e) => {
-  e.preventDefault();
-  grid.innerHTML = "";
-  allChannels.forEach(ch => createItem(ch));
-  document.querySelectorAll('.filter-btn, .fav-btn, .my-btn').forEach(b => b.classList.remove('active'));
-  document.getElementById('allBtn').classList.add('active');
-});
-
-// MOVIES FILTER
-document.getElementById('moviesBtn').addEventListener('click', (e) => {
-  e.preventDefault();
-  grid.innerHTML = "";
-  allChannels
-    .filter(ch => ch.name.toLowerCase().includes("movie") || ch.name.toLowerCase().includes("cinema") || ch.name.toLowerCase().includes("action"))
-    .forEach(ch => createItem(ch));
-  document.querySelectorAll('.filter-btn, .fav-btn, .my-btn').forEach(b => b.classList.remove('active'));
-  document.getElementById('moviesBtn').classList.add('active');
-});
-
-// MUSIC FILTER
-document.getElementById('musicBtn').addEventListener('click', (e) => {
-  e.preventDefault();
-  grid.innerHTML = "";
-  allChannels
-    .filter(ch => ch.name.toLowerCase().includes("music") || ch.name.toLowerCase().includes("songs") || ch.name.toLowerCase().includes("zing") || ch.name.toLowerCase().includes("mtv"))
-    .forEach(ch => createItem(ch));
-  document.querySelectorAll('.filter-btn, .fav-btn, .my-btn').forEach(b => b.classList.remove('active'));
-  document.getElementById('musicBtn').classList.add('active');
-});
-
-const shakaContainer = document.querySelector('.shaka-video-container');
+// ===== Iframe Logic =====
 const iframeContainer = document.getElementById('iframeContainer');
 const iframe = document.getElementById('contentFrame');
+document.getElementById("indNzBtn").addEventListener("click", e=>{ e.preventDefault(); showIframe("ply.html"); });
+function showIframe(url){ if(video) video.pause(); document.querySelector('.shaka-video-container').style.display="none"; iframeContainer.style.display="block"; iframe.src=url; }
+function showPlayer(){ iframe.src=""; iframeContainer.style.display="none"; document.querySelector('.shaka-video-container').style.display="block"; }
 
-// 1. WPL Hindi Button ka logic (Isme Iframe URL hai)
-document.getElementById("indNzBtn").addEventListener("click", (e)=>{
-  e.preventDefault();
-  // Ye raha aapka Iframe URL
-  showIframe("ply.html");
-});
-
-// 2. Iframe ko dikhane aur purana video PAUSE karne ka logic
-function showIframe(url){
-  const shakaContainer = document.querySelector('.shaka-video-container');
-  const iframeContainer = document.getElementById('iframeContainer');
-  const iframe = document.getElementById('contentFrame');
-
-  // Video ko pause karne ke liye ye line zaroori hai
-  if (video) {
-    video.pause(); 
-  }
-
-  shakaContainer.style.display = "none";
-  iframeContainer.style.display = "block";
-  iframe.src = url;
-}
-
-// 3. Iframe ko band karke wapas player dikhane ka logic
-function showPlayer(){
-  const shakaContainer = document.querySelector('.shaka-video-container');
-  const iframeContainer = document.getElementById('iframeContainer');
-  const iframe = document.getElementById('contentFrame');
-  
-  iframe.src = ""; // Isse WPL ki awaz band ho jayegi
-  iframeContainer.style.display = "none";
-  shakaContainer.style.display = "block";
-}
-
-const showStreamBtn = document.getElementById("showStreamBtn");
-showStreamBtn.addEventListener("click", (e) => {
-    e.preventDefault();
-    if (!streamUrl) {
-        alert("Abhi koi channel play nahi ho raha.");
-        return;
-    }
-    let drmString = "";
-    if (drmConfig && drmConfig.clearKeys && Object.keys(drmConfig.clearKeys).length > 0) {
-        const kid = Object.keys(drmConfig.clearKeys)[0];
-        const key = drmConfig.clearKeys[kid];
-        drmString = `&drmScheme=clearkey&drmLicense=${kid}:${key}`;
-    }
-    const cookieString = cookieHeader ? `|Cookie=${cookieHeader}` : "";
-    const finalUrl = `intent:${streamUrl}${cookieString}${drmString}#Intent;package=com.genuine.leone;end`;
-    window.location.href = finalUrl;
-});
-
-function handleFullscreenChange() {
-  const isFullscreen = document.fullscreenElement || document.webkitFullscreenElement;
-  nsBtn.style.display = isFullscreen ? "none" : "inline-block";
-}
-document.addEventListener("fullscreenchange", handleFullscreenChange);
-document.addEventListener("webkitfullscreenchange", handleFullscreenChange);
 </script>
 </body>
 </html>
