@@ -1,4 +1,4 @@
-echo '<!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
@@ -8,6 +8,7 @@ echo '<!DOCTYPE html>
 
 <script>
 document.addEventListener("contextmenu",e=>e.preventDefault());
+
 document.onkeydown=function(e){
 if(e.keyCode==123)return false;
 if(e.ctrlKey&&e.shiftKey&&e.keyCode==73)return false;
@@ -15,9 +16,10 @@ if(e.ctrlKey&&e.shiftKey&&e.keyCode==74)return false;
 if(e.ctrlKey&&e.keyCode==85)return false;
 };
 
-var code="'$(base64 index.html | tr -d '\n')'";
+var code="BASE64_ENCODED_CODE";
+
 document.write(atob(code));
 </script>
 
 </body>
-</html>' > player.html
+</html>
